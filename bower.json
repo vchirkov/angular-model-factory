@@ -11,7 +11,7 @@
     "type": "git",
     "url": "git://github.com/vchirkov/angular-model-factory.git"
   },
-  "main": "./dist/angular-model-factory.js",
+  "main": "./src/angularModel.js",
   "ignore": [
     "**/.*",
     "node_modules",
