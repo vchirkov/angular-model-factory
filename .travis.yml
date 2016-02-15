@@ -18,3 +18,5 @@ before_install:
   - bower install
 before_script:
   - npm prune
+after_success:
+  - npm run build

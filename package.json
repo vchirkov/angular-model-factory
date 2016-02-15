@@ -29,8 +29,6 @@
   "main": "./dist/angular-model-factory.js",
   "scripts": {
     "build": "grunt build",
-    "prepublish": "npm run build",
-    "postpublish": "publish-latest",
     "test": "grunt karma:ci"
   },
   "repository": {
