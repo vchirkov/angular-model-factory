@@ -29,7 +29,10 @@
   "main": "./dist/angular-model-factory.js",
   "scripts": {
     "build": "grunt build",
-    "test": "grunt karma:ci"
+    "prepublish": "npm run build",
+    "postpublish": "publish-latest",
+    "test": "grunt karma:ci",
+    "semantic-release": "semantic-release pre && semantic-release post"
   },
   "repository": {
     "type": "git",
