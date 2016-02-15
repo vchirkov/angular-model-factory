@@ -657,6 +657,16 @@ module.provider('$modelFactory', function(){
 
                 var def = $q.defer();
 
+                // mechanism to abort request from app
+                // we set canceller as promise field and pass it to request
+                // if cancelling mechanism was defined before, skip this step
+                // http://stackoverflow.com/questions/13928057/how-to-cancel-an-http-request-in-angularjs
+                if (!params.timeout) {
+                    var canceller = $q.defer();
+                    params.timeout = canceller.promise;
+                    def.promise.cancel = canceller.resolve;
+                }
+
                 // set the queue for this promise
                 promiseTracker[signature] = def.promise;
 

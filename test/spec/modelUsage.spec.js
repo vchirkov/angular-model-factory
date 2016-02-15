@@ -173,6 +173,22 @@ describe('A person model defined using modelFactory', function() {
                 $httpBackend.flush();
             });
 
+            it('should cancel request on cancel() call', function () {
+                var promise = PersonModel.query({
+                    name: 'Juri',
+                    age: 29
+                });
+
+                promise.then(function () {
+                }, function (data) {
+                    expect(data.status).toBe(-1);
+                });
+
+                $httpBackend.expectGET('/api/people?age=29&name=Juri').respond({});
+
+                promise.cancel();
+            });
+
         });
 
         describe('when calling get(..)', function() {
@@ -225,6 +241,22 @@ describe('A person model defined using modelFactory', function() {
                     age: 29
                 });
                 $httpBackend.flush();
+            });
+
+            it('should cancel request on cancel() call', function () {
+                var promise = PersonModel.get('123', {age: 29});
+
+                promise.then(function () {
+                }, function (data) {
+                    expect(data.status).toBe(-1);
+                });
+
+                $httpBackend.expectGET('/api/people/123?age=29').respond({
+                    id: 1,
+                    age: 29
+                });
+
+                promise.cancel();
             });
 
             xit('should return the requested resource by its id when passing it as object', function() {

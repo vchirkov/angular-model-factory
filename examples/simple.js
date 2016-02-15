@@ -5,7 +5,7 @@ define(['angular', 'model-factory'], function (angular) {
     module.factory('AnimalModel', function() {
         function Animal(val) {
             angular.extend(this, val);
-        };
+        }
 
         Animal.prototype.dateAdded = function(val) {
             return new Date(val);
@@ -111,6 +111,15 @@ define(['angular', 'model-factory'], function (angular) {
                 // models = [ ZooModel({ type: 'National', name: 'DC Zoo', id: '123' }) ]
                 $scope.allZoos = models;
             });
+        };
+
+        //You can abort request calling request promise cancel() method
+        $scope.abortRequest = function(){
+            var requestPromise = ZooModel.query();
+            requestPromise.then(function(){}, function(req){
+                // req = {status: -1}
+            });
+            requestPromise.cancel();
         };
 
     });
