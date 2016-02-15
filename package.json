@@ -21,7 +21,7 @@
     "karma-ie-launcher": "^0.2.0",
     "karma-jasmine": "~0.3.1",
     "karma-mocha-reporter": "~0.3.1",
-    "karma-phantomjs-launcher": "~0.1.4",
+    "karma-phantomjs-launcher": "~1.0.0",
     "ng-annotate": "^1.0.2",
     "publish-latest": "^1.1.2",
     "semantic-release": "^4.3.5"
@@ -31,11 +31,13 @@
     "build": "grunt build",
     "prepublish": "npm run build",
     "postpublish": "publish-latest",
-    "test": "grunt karma:ci",
-    "semantic-release": "semantic-release pre && npm publish && semantic-release post"
+    "test": "grunt karma:ci"
   },
   "repository": {
     "type": "git",
     "url": "https://github.com/Swimlane/angular-model-factory.git"
+  },
+  "dependencies": {
+    "phantomjs-prebuilt": "^2.1.4"
   }
 }
