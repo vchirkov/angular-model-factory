@@ -566,7 +566,8 @@ module.provider('$modelFactory', function(){
             /**
              * Builds the request for a set of actions.
              */
-            Model.$buildRequest = function(action, param, data, extras){
+            Model.$buildRequest = function (action, param, requestData, extras) {
+                var data = copy(requestData);
                 var clone = copy(options.actions.base);
                 extend(clone, copy(param));
 
@@ -638,7 +639,7 @@ module.provider('$modelFactory', function(){
 
                 // don't include the payload for DELETE requests
                 if(action !== 'delete' && clone.method !== 'DELETE'){
-                    clone.data = data;
+                    clone.data = copy(requestData);
                 }
 
                 return Model.$call(clone);
